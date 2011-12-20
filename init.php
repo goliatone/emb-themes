@@ -6,6 +6,22 @@ $modules = Kohana::modules();
 $modules['docroot'] = realpath(DOCROOT);
 Kohana::modules($modules);
 
-Theme::initialize('test');
+Route::set(	'error', 
+			'error/<action>((/<message>)/<origuri>)', 
+			array('action' => '[0-9]{3}'
+				, 'message' => '.+'
+				,'origuri' => '.+'
+			)
+			) ->defaults(array(
+	              'controller' => 'errorpage',
+	         ));
 
-Dispatcher::instance()->add_listener('theme.render_menu_main_menu', array('menutest', 'render_menu') );
+/**
+ * Convert errors to exceptions, so that
+ * we can catch them with our errorpage router.
+ * This have to be set on the bootstrap.php file!
+ */
+//Kohana::$errors = TRUE;
+
+Theme::initialize('test');
+Theme::add_menu_listener("main_menu", array('menutest', 'render_menu'));

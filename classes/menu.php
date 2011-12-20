@@ -5,6 +5,14 @@
  * - `menu->saveXML();`
  * - `menu->saveHTML();`
  * - `menu->saveHTMLFile($filename);`
+ * 
+ *
+ * @package    	Theme
+ * @category	Menu
+ * @author 		Emiliano Burgos <hello@goliatone.com>
+ * @copyright  	(c) 20011 Emiliano Burgos
+ * @license    	http://kohanaphp.com/license
+ * 
  */
 class Menu extends DOMDocument
 {

@@ -2,8 +2,8 @@
 	<h3>Secondary content</h3>
 	<nav class="global">  
 	<?php
-			$arguments = array('controller_type' => 'admin', 'acl_level' => 'admin', 'acl_resource' => 'all');			
-    		echo Theme::render_menu('sidebar_menu', $arguments); 
+			//$arguments = array('controller_type' => 'admin', 'acl_level' => 'admin', 'acl_resource' => 'all');			
+    		//echo Theme::render_section('sidebar_menu', $arguments); 
     ?>
     </nav>
     <h4>Heading</h4>

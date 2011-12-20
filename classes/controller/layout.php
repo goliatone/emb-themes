@@ -1,6 +1,14 @@
-<?php 
-defined('SYSPATH') or die('No direct script access.');
-
+<?php defined('SYSPATH') or die('No direct script access.');
+/**
+ * 
+ *
+ * @package    	Theme
+ * @category	Controller
+ * @author 		Emiliano Burgos <hello@goliatone.com>
+ * @copyright  	(c) 20011 Emiliano Burgos
+ * @license    	http://kohanaphp.com/license
+ * 
+ */
 class Controller_Layout extends Controller 
 {
 		

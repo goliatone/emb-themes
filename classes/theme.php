@@ -1,8 +1,11 @@
-<?php 
-defined('SYSPATH') OR die('No direct access allowed.');
+<?php defined('SYSPATH') OR die('No direct access allowed.');
 /**
  * 
- * 
+ *
+ * @package    	Theme
+ * @author 		Emiliano Burgos <hello@goliatone.com>
+ * @copyright  	(c) 20011 Emiliano Burgos
+ * @license    	http://kohanaphp.com/license
  * 
  */
 class Theme
@@ -67,16 +70,10 @@ class Theme
 		} 
 	}
 
-	/**
-	 * 
-	 */
-	public static function add_section_markup($section, array $markup)
-	{
-		self::$_section_markups[$section] = $markup;
-	}
 	
 	/**
-	 * 
+	 * @param 	string 	$section	id of the rendered section. Used to generate event.
+	 * @param 	mixed	$content	Content to be rendered.
 	 */
 	public static function render_section($section, $content)
 	{
@@ -96,21 +93,15 @@ class Theme
 	
 	/**
 	 * 
+	 * @param string $section id of the rendered section.
+	 * @param mixed  $listener  	Callback for this event
+	 * @param priority  $priority  	Listener priority in the queue.
+	 * 
+	 * @see [Dispatcher](dispatcher#add_listener)
 	 */
-	public static function get_section_markup($section)
+	public static function add_section_listener($section, $listener, $priority = 0)
 	{
-		if(isset(self::$_section_markups[self::$_current_path]))
-		{
-			return self::$_section_markups[self::$_current_path];
-		}
-		else if(isset(self::$_section_markups[$section]))
-		{
-			return self::$_section_markups[$section];
-		}
-		else 
-		{
-			return NULL;	
-		}
+		Dispatcher::instance()->add_listener("theme.render_$section",$listener,$priority);
 	}
 	
 	/**
@@ -131,7 +122,45 @@ class Theme
 		return $menubar->render();
 	}
 	
-		
+	/**
+	 * 
+	 * @param string $menu_id		id of the menu.
+	 * @param mixed  $listener  	Callback for this event
+	 * @param priority  $priority  	Listener priority in the queue.
+	 * 
+	 * @see [Dispatcher](dispatcher#add_listener)
+	 */
+	public static function add_menu_listener($menu_id, $listener, $priority = 0)
+	{
+		Dispatcher::instance()->add_listener("theme.render_menu_{$menu_id}",$listener,$priority);
+	}
+	
+	/**
+	 * 
+	 */
+	public static function add_section_markup($section, array $markup)
+	{
+		self::$_section_markups[$section] = $markup;
+	}
+	
+	/**
+	 * 
+	 */
+	public static function get_section_markup($section)
+	{
+		if(isset(self::$_section_markups[self::$_current_path]))
+		{
+			return self::$_section_markups[self::$_current_path];
+		}
+		else if(isset(self::$_section_markups[$section]))
+		{
+			return self::$_section_markups[$section];
+		}
+		else 
+		{
+			return NULL;	
+		}
+	}
 	/*
 	public static function find_file($dir, $file, $ext = NULL, $array = FALSE )
 	{

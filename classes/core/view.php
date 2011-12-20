@@ -3,6 +3,14 @@
  * View class that adds functionality to 
  * deal with themes.
  * 
+ * 
+ *
+ * @package    	Theme
+ * @category	Core
+ * @author 		Emiliano Burgos <hello@goliatone.com>
+ * @copyright  	(c) 20011 Emiliano Burgos
+ * @license    	http://kohanaphp.com/license
+ * 
  */
 class Core_View extends Kohana_View {
 	

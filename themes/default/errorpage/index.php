@@ -13,37 +13,23 @@
 		<!-- HEADER SCRIPTS -->		
     </head>
     <body>
-        <?php if (isset($header)): ?>
-        <div class="topbar">
-	     	<div class="fill"> 
-        		<?php echo $header; ?>
-           	</div> 
-		</div>
-		<?php endif;?>
-		
          <div class="container">
-     	      <div class="content">
-         	      	<div class="page-header">
+         	<div class="hero-unit">
+         		<?php if (isset($content)) echo $content->render(); ?>
+         	</div>
+     	    <!--div class="content">
+         	      	<div class="page-header error">
          	      		<h1><?php echo ucfirst($controller_name);?> <small><?php echo $action_name;?></small></h1>
          	        </div>
          	        <div class="row">
          	        	<div class="span10">
          	        		<?php 
-                        	if (isset($content)) echo Theme::render_section('content', $content->render());
+                        	if (isset($content)) echo $content->render();
              	            ?>
-         				 </div>
-          				<div class="span4">
-             				<?php echo $sidebar;/*if (isset($sidebar)) echo Theme::render_section('sidebar', $sidebar->render());*/ ?>
-          		 		</div>  
+         				 </div>          				 
         			</div>
-  				</div>
-		     <?php if( isset($footer)):?>		
-		        <footer>
-		            <?php echo $footer->render(); /*echo Theme::render_section('footer', $footer);*/ ?>
-		        </footer>
-				<?php endif; ?>
+  			</div-->
 		   </div> <!-- /container -->
-		
 		<!-- FOOTER SCRIPTS -->
         <?php Resources::get_scripts('footer');?>		
 		<!-- FOOTER SCRIPTS -->
@@ -51,8 +37,5 @@
 		<!-- SNIPPETS -->        
 		<?php Resources::get_scripts('snippets');?>
 		<!-- SNIPPETS -->	
-		<div class="dev">
-		<?php if (Kohana::$profiling) echo View::factory('profiler/stats') ?>
-	</div>
     </body>
 </html>
