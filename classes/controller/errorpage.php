@@ -12,7 +12,11 @@ class Controller_Errorpage extends Controller_Layout {
     public function before()
     {
         parent::before();
-        // Internal request only!
+		
+		/*
+		 * We only want to take re-routed request from here.
+		 * No direct access.
+		 */ 
         if (! $this->request->is_initial()) {
             if ($message = rawurldecode($this->request->param('message'))) 
             {
@@ -35,7 +39,7 @@ class Controller_Errorpage extends Controller_Layout {
 	
 	/**
 	 * Magic happens hereafter, it uses Control_Layout 
-	 * defaults.
+	 * defaults and automagic.
 	 */
     public function action_404() 
     {

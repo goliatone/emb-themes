@@ -33,15 +33,24 @@ class Controller_Layout extends Controller
 	public $template = 'layout/default';
 	
 	/**
-	 * @var
+	 * @var string $layout ID of the current layout.
 	 */
 	public $layout = 'layout';
 	
 	/**
-	 * @var
+	 * @var	string $theme ID of the current theme.
 	 */
 	public $theme  = 'default';
 	
+	/**
+	 * @var	string $action Current action.
+	 */
+	public $action;
+	
+	/**
+	 * @var	string $action Current controller's name.
+	 */
+	public $controller;
 	
 	/**
 	 * Each block corresponds to a partial view 
@@ -64,6 +73,7 @@ class Controller_Layout extends Controller
 		/**
 		 * We initialize the current theme.
 		 * Call init.php file and load config of theme.
+		 * REVISION: Should we move this to module's init.php file?
 		 */		 
 		 Theme::initialize($this->_type);
 		 
@@ -86,6 +96,8 @@ class Controller_Layout extends Controller
 		 */
 		$this->_partials = Kohana::$config->load('theme.partials');
 		
+		$this->action = $this->request->action();
+		$this->controller = $this->request->controller();
 		
 		// Check if internal request
 		if (! $this->request->is_initial() OR $this->request->is_ajax())
@@ -134,24 +146,23 @@ class Controller_Layout extends Controller
 	private function _prepare_render()
 	{
 		// Load the template
-		$this->template = View::factory($this->layout);
+		$this->template = View::factory($this->get_layout());
 		
-		$action = $this->request->action();
-		$controller = $this->request->controller();
-		
-		View::bind_global('controller_name', $controller);
-		View::bind_global('action_name', $action);
+		View::bind_global('controller_name', $this->controller);
+		View::bind_global('action_name', $this->action);
 		View::bind_global('controller_type',$this->_type);
 		
         // Name of the Controller in the Template
-        $this->template->controller_name 	= $controller;			
+        $this->template->controller_name 	= $this->controller;			
         // Name of the Action in the Template
-        $this->template->action_name 		= $action;
+        $this->template->action_name 		= $this->action;
 		
 		$this->template->title 				= $this->_title();
 		
 		$this->_create_partials();	
 	}
+	
+	
 	
 	/**
 	 * Method that will take care of preparing 
@@ -201,6 +212,35 @@ class Controller_Layout extends Controller
 	}
 	
 	/**
+	 * Get's the actual layout for this controller.
+	 * By making a method call instead of directly using
+	 * the propertie we can add logic such as different 
+	 * layouts for different actions.
+	 * <pre><code>
+	 * //Our controller could override the method with the following logic.
+	 * public function get_layout()
+	 * {
+	 * 		switch($this->action)
+	 * 		{
+	 * 			case "index":
+	 * 				return "simplelayout";
+	 * 			break;
+	 * 			case "page":
+	 * 				return "pagelayout";
+	 * 			break;
+	 * 			case "blog":
+	 * 				return "bloglayout";
+	 * 			break;
+	 * 		}
+	 * }
+	 * </pre></code> 
+	 */
+	public function get_layout()
+	{
+		return $this->layout;
+	}
+	
+	/**
 	 * We map our controller's action to an specific view.
 	 * 
 	 * @param object $add_layout [optional]
@@ -208,11 +248,15 @@ class Controller_Layout extends Controller
 	 */
 	 public function get_page_path($add_layout = FALSE)
 	{
-		$view_path = $this->request->directory().DIRECTORY_SEPARATOR.$this->request->controller().DIRECTORY_SEPARATOR.$this->request->action();
+		//REVIEW: Should we use $this->request->action() instead? What if we change action internally? 
+		$view_path = $this->request->directory().DIRECTORY_SEPARATOR.$this->controller.DIRECTORY_SEPARATOR.$this->action;
 		return  $view_path;
 	}
 	
 	/**
+	 * By making a method call instead of directly using
+	 * the propertie we can add logic such as different 
+	 * partials for different actions.
 	 * 
 	 * @param object $partial
 	 * @return 
