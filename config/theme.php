@@ -3,7 +3,7 @@
 return array(
 	'default_theme' 		=> 'default',
 	'default_admin_theme' 	=> 'default',
-	'themes_dir'				=> 'themes',
+	'themes_dir'			=> 'themes',
 	'themes_path'    		=> DOCROOT.'themes',
 	//move to themes	
 	'front' => array(

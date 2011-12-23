@@ -30,7 +30,7 @@ class Controller_Layout extends Controller
 	/**
 	 * @var  View  page template
 	 */
-	public $template = 'layout/default';
+	public $template = 'default';
 	
 	/**
 	 * @var string $layout ID of the current layout.
@@ -59,6 +59,13 @@ class Controller_Layout extends Controller
 	 * @var	array	Holds default blocks on template.
 	 */
 	protected $_partials  = array('content'=> '', 'footer'=> '', 'header'=> '');
+	
+	
+	/**
+	 * If we need to redirect actions such as in 
+	 * admin controller where index action redirects to login.
+	 */
+	protected $_redirected_actions = array();
 	
 	/**
 	 * 
@@ -105,7 +112,7 @@ class Controller_Layout extends Controller
 			$this->_internal = TRUE;
 		}
 		
-		if ($this->auto_render === TRUE) 
+		if ($this->auto_render === TRUE && ! in_array($this->action, $this->_redirected_actions)) 
 		{
 			$this->_prepare_render();		
            
@@ -246,7 +253,7 @@ class Controller_Layout extends Controller
 	 * @param object $add_layout [optional]
 	 * @return string $view_path 
 	 */
-	 public function get_page_path($add_layout = FALSE)
+	public function get_page_path($add_layout = FALSE)
 	{
 		//REVIEW: Should we use $this->request->action() instead? What if we change action internally? 
 		$view_path = $this->request->directory().DIRECTORY_SEPARATOR.$this->controller.DIRECTORY_SEPARATOR.$this->action;

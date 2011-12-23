@@ -48,10 +48,11 @@ class Theme
 				foreach ($config as $key => $value)
 				{
 					//if we want to extend the resources config.
-					if($key == 'resources' && is_array($value))
+					if($key === 'resources' && is_array($value))
 					{
 						if ($resources = Kohana::$config->load('resources'))
 						{
+								
 							foreach($value as $k => $v)
 							{
 								//TODO: Clean this, we dont take care of case were it is set but not as an array.
@@ -59,7 +60,7 @@ class Theme
 								else $resources->set($k, $v);
 							}
 						}
-					}
+					}					
 					else
 					{
 						// Copy each value in the config
