@@ -6,6 +6,19 @@ $modules = Kohana::modules();
 $modules['docroot'] = realpath(DOCROOT);
 Kohana::modules($modules);
 
+/**
+ * Add current theme config dir to Kohana's load system.
+ * TODO Make sure at this point we have the right theme.
+ * Use DDBB to find theme? 
+ */
+$current_theme = Theme::current_theme();
+Kohana::$config->attach(new Kohana_Config_File('themes/{$current_theme}/config'));
+
+/*
+ * Custom error pages. We need to place
+ * our exception handler inside 
+ * application/classes/kohana/exception.php
+ */ 
 Route::set(	'error', 
 			'error/<action>((/<message>)/<origuri>)', 
 			array('action' => '[0-9]{3}'
