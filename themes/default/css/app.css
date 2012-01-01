@@ -27,4 +27,123 @@
    Page Name 2
 ----------------------------------------- */
 
+p.intro {
+    color: #555555;
+    font-size: 18px;
+    line-height: 1.3;
+}
+h1 small, h2 small, h3 small, h4 small, h5 small {
+    color: #777777;
+    font-size: 60%;
+    font-weight: normal;
+}
+header {
+    margin-bottom: 20px;
+}
+header nav ul {
+    float: right;
+    margin: 0 0 0 -20px;
+    overflow: hidden;
+    padding: 0;
+}
+header nav ul li {
+    display: block;
+    float: left;
+    margin: 0 0 0 20px;
+    padding: 0;
+}
+footer {
+    padding-bottom: 20px;
+}
+footer .row {
+    border-top: 1px solid #DDDDDD;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+.jumbotron {
+    margin-bottom: 30px;
+    position: relative;
+}
+.jumbotron h1 {
+    bottom: 20px;
+    left: 20px;
+    position: absolute;
+}
+.homepage .content {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.85);
+    bottom: 20px;
+    left: 80px;
+    padding: 20px;
+    position: absolute;
+    width: 50%;
+}
+.homepage .content blockquote {
+    border-left: medium none;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0;
+}
+.homepage .content h1 {
+    bottom: 0;
+    font-size: 18px;
+    font-weight: normal;
+    left: 0;
+    position: relative;
+}
+.homepage a.slider {
+    background: none repeat scroll 0 0 #FFFFFF;
+    display: block;
+    height: 80px;
+    line-height: 80px;
+    margin-top: -40px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 60px;
+}
+.homepage a#prev {
+    left: 0;
+}
+.homepage a#next {
+    right: 0;
+}
+.culinary .content {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.85);
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+.culinary .content p {
+    color: #555555;
+    font-size: 15px;
+    margin: 0;
+    padding: 20px;
+    width: 60%;
+}
+.culinary .content .button {
+    bottom: 20px;
+    position: absolute;
+    right: 20px;
+}
+.cta {
+    margin: 30px 0;
+    text-align: center;
+}
+.date {
+    background: none repeat scroll 0 0 #DDDDDD;
+    padding: 20px 0;
+    text-align: center;
+}
+.date span {
+    display: block;
+    margin-bottom: 6px;
+    text-align: center;
+}
+.date strong {
+    font-size: 30px;
+}
+a.map {
+    display: block;
+}
 

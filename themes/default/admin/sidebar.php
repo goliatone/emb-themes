@@ -11,5 +11,5 @@
 <p>
 <a class="btn" href="#">View details »</a>
 </p>
-
+<?php if(isset($content)) echo $content;?>
 </aside>

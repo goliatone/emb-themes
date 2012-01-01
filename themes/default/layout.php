@@ -14,29 +14,31 @@
     </head>
     <body>
         <?php if (isset($header)): ?>
-        <div class="topbar">
-	     	<div class="fill"> 
-        		<?php echo $header; ?>
-           	</div> 
-		</div>
+        <header>
+			<div class="container">
+				<div class="row">
+        			<?php echo $header; ?>
+           		</div> 
+			</div>
+		</header>
 		<?php endif;?>
 		
          <div class="container">
-     	      <div class="content">
-         	      	<div class="page-header">
+         	        <div class="row">
+         	        	<div class="ten columns">
+         	        		<div class="page-header">
          	      		<h1><?php echo ucfirst($controller_name);?> <small><?php echo $action_name;?></small></h1>
          	        </div>
-         	        <div class="row">
-         	        	<div class="span10">
          	        		<?php 
                         	if (isset($content)) echo Theme::render_section('content', $content->render());
              	            ?>
          				 </div>
-          				<div class="span4">
+        			</div>
+        			<div class="row">
+        				<div class="four columns">
              				<?php echo $sidebar;/*if (isset($sidebar)) echo Theme::render_section('sidebar', $sidebar->render());*/ ?>
           		 		</div>  
         			</div>
-  				</div>
 		     <?php if( isset($footer)):?>		
 		        <footer>
 		            <?php echo $footer->render(); /*echo Theme::render_section('footer', $footer);*/ ?>
@@ -52,7 +54,7 @@
 		<?php Resources::get_scripts('snippets','front');?>
 		<!-- SNIPPETS -->	
 		<div class="dev">
-		<?php if (Kohana::$profiling) echo View::factory('profiler/stats') ?>
-	</div>
+			<?php if (Kohana::$profiling) echo View::factory('profiler/stats') ?>
+		</div>
     </body>
 </html>

@@ -1,1 +1,1 @@
-no access
+<?php echo Notice::render();?>

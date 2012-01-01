@@ -45,12 +45,23 @@ class Controller_Layout extends Controller
 	/**
 	 * @var	string $action Current action.
 	 */
+	public $directory;
+	
+	/**
+	 * @var	string $action Current action.
+	 */
 	public $action;
 	
 	/**
 	 * @var	string $action Current controller's name.
 	 */
 	public $controller;
+	
+	/**
+	 * 
+	 */
+	protected $_page_segments = array('directory','controller','action');
+	
 	
 	/**
 	 * Each block corresponds to a partial view 
@@ -87,7 +98,7 @@ class Controller_Layout extends Controller
 		 /**
 		  * We let the theme know which path are we on.
 		  */
-		 Theme::set_current_path( $this->get_page_path() );
+		 Theme::set_current_path( $this->get_page_path( ) );
 	}
 	
 	 public function before() 
@@ -103,7 +114,11 @@ class Controller_Layout extends Controller
 		 */
 		$this->_partials = Kohana::$config->load('theme.partials');
 		
-		$this->action = $this->request->action();
+		/*
+		 * Used to render template, layout, and partial paths
+		 */ 
+		$this->action     = $this->request->action();
+		$this->directory  = $this->request->directory();
 		$this->controller = $this->request->controller();
 		
 		// Check if internal request
@@ -250,14 +265,19 @@ class Controller_Layout extends Controller
 	/**
 	 * We map our controller's action to an specific view.
 	 * 
-	 * @param object $add_layout [optional]
 	 * @return string $view_path 
 	 */
 	public function get_page_path($add_layout = FALSE)
 	{
-		//REVIEW: Should we use $this->request->action() instead? What if we change action internally? 
-		$view_path = $this->request->directory().DIRECTORY_SEPARATOR.$this->controller.DIRECTORY_SEPARATOR.$this->action;
-		return  $view_path;
+		//REVIEW: Should we use $this->request->action() instead? What if we change action internally?
+		//If we ant to, we could __get('action) and return $this->request->action?
+		$segments = array();
+		foreach($this->_page_segments as $segment)
+		{
+			array_push($segments, $this->$segment);
+		}
+		
+		return implode(DIRECTORY_SEPARATOR,array_filter($segments));		
 	}
 	
 	/**

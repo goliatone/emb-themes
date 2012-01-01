@@ -21,10 +21,23 @@
 		<![endif]-->
     </head>
     <body>
+    	
         <?php if (isset($header)): ?>
         <div class="topbar">
 	     	<div class="fill"> 
         		<?php echo $header; ?>
+           	</div> 
+		</div>
+		<?php endif;?>
+		<!-- review -->
+		<?php if (Notice::queued()): ?>
+        <div class="container">
+     	      <div class="alerts">
+     	      	<div class="row">
+         	        	<div class="span14">
+        				<?php echo Notice::render(NULL,'admin/messages/alerts');?>
+        			</div>
+        		</div>
            	</div> 
 		</div>
 		<?php endif;?>

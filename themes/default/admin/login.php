@@ -32,5 +32,8 @@
 		        </div>
 	        </div>
       	</div>
+      	<div class="dev">
+			<?php if (Kohana::$profiling) echo View::factory('profiler/stats') ?>
+		</div>
     </body>
 </html>
