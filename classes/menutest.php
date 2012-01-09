@@ -7,17 +7,19 @@ class MenuTest
 	{
 		$menu_bar = $event->main_menu;
 		
-		$blog = new Menu("Blog");
-		$blog->set_link("#Blog");
+		$blog = new Menu("Messages");
+		$blog->set_link('#');
 		
-		$new = new Menu("New Post");
-		$new->set_link("#blog/new");
+		$new = new Menu("New Message");
+		$new->set_link(Route::url('emb-admin-controller',array('controller' => 'message','action' => 'new'), TRUE));
 		$new->set_attribute("active","class");
-		$dit = new Menu("Edit Post");
-		$dit->set_link("#blog/edit");
 		
+		
+		$list = new Menu("List Messages");
+		$list->set_link(Route::url('emb-admin-controller',array('controller' => 'message','action' => 'index'), TRUE));
+		
+		$blog->add_item($list);
 		$blog->add_item($new);
-		$blog->add_item($dit);
 		
 		$users = new Menu("Users");
 		$users->set_link("#Blog");

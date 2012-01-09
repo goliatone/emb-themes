@@ -26,6 +26,7 @@ return array(
 			 'media/default/admin/js/bootstrap-scrollspy.js'  => Resources::JS_FOOTER,
 			 'media/default/admin/js/bootstrap-tabs.js'  => Resources::JS_FOOTER,
 			 'media/default/admin/js/bootstrap-twipsy.js'  => Resources::JS_FOOTER
+			 ,Url::site('media/plugins/jquery.tablesorter/jquery.tablesorter.js',TRUE) => Resources::JS_FOOTER
 		),
 		'styles' => array(
 			'media/default/admin/css/bootstrap.min.css' => 'screen',	
