@@ -18,5 +18,5 @@ return array(
 					 Url::site('media/plugins/lazy/jquery.lazy.js',TRUE) => Resources::JS_HEADER
 				,)
 			,)
-	,    	
+	,
 );

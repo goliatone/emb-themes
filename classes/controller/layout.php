@@ -8,6 +8,8 @@
  * @copyright  	(c) 20011 Emiliano Burgos
  * @license    	http://kohanaphp.com/license
  * 
+ * TODO 
+ * - Need to review internal request handling.
  */
 class Controller_Layout extends Controller 
 {
@@ -81,6 +83,12 @@ class Controller_Layout extends Controller
 	/**
 	 * 
 	 */
+	protected $_exclude_action_rendering = array();
+	
+	
+	/**
+	 * 
+	 */
 	protected $_partial_map = array('content' => 'get_page_path','default'=>'get_partial_path');
 	
 	public function __construct(Request $request, Response $response)
@@ -127,7 +135,10 @@ class Controller_Layout extends Controller
 			$this->_internal = TRUE;
 		}
 		
-		if ($this->auto_render === TRUE && ! in_array($this->action, $this->_redirected_actions)) 
+		if ($this->auto_render === TRUE 
+			&& ! in_array($this->action, $this->_redirected_actions)
+			&& ! in_array($this->action, $this->_exclude_action_rendering)
+			) 
 		{
 			$this->_prepare_render();		
            
@@ -165,7 +176,7 @@ class Controller_Layout extends Controller
 	/**
 	 * 
 	 */
-	private function _prepare_render()
+	protected function _prepare_render()
 	{
 		// Load the template
 		$this->template = View::factory($this->get_layout());
@@ -198,7 +209,7 @@ class Controller_Layout extends Controller
 		 */
 		$content = $this->template->content;
 		$messages = Notice::get($this->request->controller());
-		$this->request->response = ($messages === FALSE) ? $content : $messages.$content;
+		$this->response->body( ($messages === FALSE) ? $content : $messages.$content );
 	}
 	
 	/**
@@ -208,7 +219,8 @@ class Controller_Layout extends Controller
 	 */
 	protected function _do_autorender()
 	{
-		return ($this->auto_render AND !$this->_internal);
+		return ($this->auto_render AND !$this->_internal AND ! in_array($this->action, $this->_redirected_actions)
+			AND ! in_array($this->action, $this->_exclude_action_rendering));
 	}
 	
 	/**
@@ -226,6 +238,7 @@ class Controller_Layout extends Controller
 				$method = Arr::get($this->_partial_map, $partial_id,$this->_partial_map['default']);
 				$partial = $this->{$method}($partial_id);
 			}
+			
 			Kohana::$log->add(Log::WARNING,"Rendering partial {$partial}");
             $this->template->{$partial_id} = new View($partial);			  
         }

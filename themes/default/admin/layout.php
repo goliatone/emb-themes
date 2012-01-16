@@ -45,7 +45,7 @@
          <div class="container">
      	      <div class="content">
          	      	<div class="page-header">
-         	      		<h1><?php echo ucfirst($controller_name);?> <small><?php echo $action_name;?></small></h1>
+         	      		<h1><?php echo ucfirst($controller_name);?><small> >><?php echo ucfirst($action_name);?></small></h1>
          	        </div>
          	        <div class="row">
          	        	<div class="span10">
@@ -53,8 +53,11 @@
                         	if (isset($content)) echo Theme::render_section('content', $content->render());
              	            ?>
          				 </div>
-          				<div class="span4">
-             				<?php echo $sidebar;/*if (isset($sidebar)) echo Theme::render_section('sidebar', $sidebar->render());*/ ?>
+          				<div class="span4">          					
+             				<?php 
+             					echo $sidebar->render();
+             					//if (isset($sidebar)) echo Theme::render_section('sidebar', $sidebar->render()); 
+             				?>
           		 		</div>  
         			</div>
   				</div>

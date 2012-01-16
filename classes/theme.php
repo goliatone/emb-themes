@@ -216,4 +216,10 @@ class Theme
 		$path = str_replace(DIRECTORY_SEPARATOR, "/", $path);
 		self::$_current_path = $path;
 	}
+	
+	static public function get_data($key, $default = NULL)
+	{
+		$out = Kohana::$config->load('theme.data.'.$key);
+		return  $out ? $out : $default;
+	}
 }
