@@ -1,28 +1,19 @@
-<div class="login">
+<div class="login">	
 	<?php if(Notice::queued('login')) echo Notice::render('login');?>
 	<?php echo Form::open();?>
-	<p class="note">
-		- Fields with <span class="required">*</span> are required.
-	</p>
 	<fieldset>
 		<div class="clearfix">
-			<label for="LoginForm_username" class="required">
-				Username
-				<span class="required">*</span>
-			</label>
+			<label for="LoginForm_username" class="required">Username</label>
 			<div class="input">
 				<input name="username" id="LoginForm_username" type="text" />
 				<span class="help-inline" id="LoginForm_username_em_" style="display:none"></span>
 			</div>
 		</div>
 		<div class="clearfix">
-			<label for="LoginForm_password" class="required">
-				Password
-				<span class="required">*</span>
-			</label>
+			<label for="LoginForm_password" class="required">Password</label>
 			<div class="input">
 				<input hint="Hint: You may login with &lt;tt&gt;demo/demo&lt;/tt&gt; or &lt;tt&gt;admin/admin&lt;/tt&gt;" name="password" id="LoginForm_password" type="password" />
-				<span class="help-block">
+				<!--span class="help-block">
 					Hint: You may login with
 					<tt>
 						demo/demo
@@ -30,7 +21,7 @@
 					<tt>
 						admin/admin
 					</tt>
-				</span>
+				</span-->
 				<span class="help-inline" id="LoginForm_password_em_" style="display:none"></span>
 			</div>
 		</div>

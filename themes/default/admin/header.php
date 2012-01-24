@@ -5,4 +5,8 @@
 	$arguments = array('controller_type' => 'admin', 'acl_level' => 'admin', 'acl_resource' => 'all');
 	echo Theme::render_menu('main_menu', $arguments,$attributes);
 	?>
+	<p class="pull-right">
+		<span class=""><?php echo __('Logged in as');?></span>
+		<a href="#"><?php echo ucfirst($user->username);?></a>
+	</p>
 </div>

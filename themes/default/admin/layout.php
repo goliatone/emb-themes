@@ -48,7 +48,7 @@
          	      		<h1><?php echo ucfirst($controller_name);?><small> >><?php echo ucfirst($action_name);?></small></h1>
          	        </div>
          	        <div class="row">
-         	        	<div class="span10">
+         	        	<div class="span11">
          	        		<?php 
                         	if (isset($content)) echo Theme::render_section('content', $content->render());
              	            ?>

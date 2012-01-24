@@ -19,4 +19,9 @@ return array(
 				,)
 			,)
 	,
+	'admin' => array(
+		'markup' => array(
+			'container' => 'container-fluid'
+		),
+	),
 );

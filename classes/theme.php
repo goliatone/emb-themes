@@ -222,4 +222,11 @@ class Theme
 		$out = Kohana::$config->load('theme.data.'.$key);
 		return  $out ? $out : $default;
 	}
+	
+	static public function markup($area, $tag)
+	{
+		$markup = Kohana::$config->load('theme'.$area.'markup');
+		
+		return $markup;
+	}
 }

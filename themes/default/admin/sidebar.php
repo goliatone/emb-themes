@@ -1,10 +1,8 @@
 <aside >
 	<?php
-	if(isset($content))
-		echo $content;
+	if(isset($content)) echo $content;
 	?>
 
-	<h3>Secondary content</h3>
 	<nav class="global">
 		<?php
 		//$arguments = array('controller_type' => 'admin', 'acl_level' => 'admin', 'acl_resource' => 'all');
@@ -15,12 +13,9 @@
 		}
 		?>
 	</nav>
-	<h4>Heading</h4>
+	<h4>Navigation</h4>
 	<p>
-		Etiam porta sem malesuada magna mollis euismod. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-	</p>
-	<p>
-		<a class="btn" href="#">View details »</a>
+		<a class="btn" href="<?php echo $referer;?>"><?php echo __('Go Back');?> »</a>
 	</p>
 
 </aside>

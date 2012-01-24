@@ -1,4 +1,57 @@
-.container {
-	width: 320px;
-	/* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
+.container{width:320px;}
+.container > .content {
+    padding: 30px;
+    border-radius: 6px;
+    border:1px solid #CCCCCC;
+}
+
+.clearfix {
+	padding-bottom: 10px;
+}
+
+.clearfix label {
+	padding-bottom:5px;
+	padding-left: 5px;
+	font-weight: bold;
+}
+.clearfix label span {
+	font-weight: normal;
+}
+
+.clearfix .input {
+	padding-bottom: 10px;
+}
+
+.help-block
+{
+	color:#333333;
+	padding-top: 5px;
+}
+
+.container input 
+{
+	margin-left: 6px;
+}
+
+.actions input {
+	float:right;
+	font-weight: bold;
+	width:30%;
+	margin-top: -16px;
+}
+
+h1 a {
+    background: url("../images/logo-login.png") no-repeat scroll center top transparent;
+    display: block;
+    height: 147px;
+    overflow: hidden;
+    padding-bottom: 15px;
+    text-indent: -9999px;
+    width: 326px;
+}
+
+.inputs-list{
+	float: left;
+	margin-bottom: -18px;
+	padding-top: 6px;
 }

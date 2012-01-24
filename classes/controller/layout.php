@@ -60,6 +60,11 @@ class Controller_Layout extends Controller
 	public $controller;
 	
 	/**
+	 * @var	string $action Current referer.
+	 */
+	public $referer;
+	
+	/**
 	 * 
 	 */
 	protected $_page_segments = array('directory','controller','action');
@@ -128,6 +133,7 @@ class Controller_Layout extends Controller
 		$this->action     = $this->request->action();
 		$this->directory  = $this->request->directory();
 		$this->controller = $this->request->controller();
+		$this->referer	  = $this->request->referrer();
 		
 		// Check if internal request
 		if (! $this->request->is_initial() OR $this->request->is_ajax())
@@ -181,9 +187,10 @@ class Controller_Layout extends Controller
 		// Load the template
 		$this->template = View::factory($this->get_layout());
 		
-		View::bind_global('controller_name', $this->controller);
+		View::bind_global('referer',$this->referer);
 		View::bind_global('action_name', $this->action);
 		View::bind_global('controller_type',$this->_type);
+		View::bind_global('controller_name', $this->controller);
 		
         // Name of the Controller in the Template
         $this->template->controller_name 	= $this->controller;			

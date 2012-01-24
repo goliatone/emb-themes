@@ -23,6 +23,9 @@
     </head>
     <body class="login">
     	<div class="container">
+    		<h1>
+				<a title="EnjoyMondays Admin" href="<?php echo URL::base();?>">EnjoyMondays</a>
+			</h1>
     		<div class="content">
     			<div class="row">
     				<?php if (Notice::queued()): ?>
@@ -38,9 +41,6 @@
 					?>
 		        </div>
 	        </div>
-      	</div>
-      	<div class="dev">
-			<?php if (Kohana::$profiling) echo View::factory('profiler/stats') ?>
-		</div>
+      	</div>      	
     </body>
 </html>
