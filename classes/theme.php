@@ -117,6 +117,13 @@ class Theme
 		
 		$event = new Event( "theme.render_menu_{$menu_id}", $event_arguments);
 		$event->bind($menu_id, $menubar);
+		/*
+		 * We make the current menu id available on the event:
+		 * $menu_id = $event->menu_id;
+		 * $menu_bar = $event->{$menu_id};
+		 * $menu_bar->add_menu($dashboard);
+		 */ 
+		$event->bind('menu_id',$menu_id);
 		
 		Dispatcher::instance()->dispatch_event( $event );
 		
