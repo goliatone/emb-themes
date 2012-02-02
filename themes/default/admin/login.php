@@ -29,11 +29,9 @@
     		<div class="content">
     			<div class="row">
     				<?php if (Notice::queued()): ?>
-		     	      <div class="alerts">
-         	        	<div class="span14">
-        					<?php echo Notice::render(NULL,'admin/messages/alerts');?>
-        				</div>
-		           	 </div> 
+		     	    <div class="alerts">
+        				<?php echo Notice::render(NULL,'admin/messages/alerts');?>
+		           	</div> 
 					<?php endif;?>
 		            <?php
 						if(isset($errors)) $content->errors = $errors; 
