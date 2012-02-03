@@ -43,7 +43,7 @@ class Menu extends DOMDocument
 	 
 	public function __construct($link_name, array $attributes = array() )
     {
-        parent::__construct( '1.0', 'iso-8859-1');
+       parent::__construct( '1.0', 'UTF-8');
 
         /*** format the created XML ***/
         $this->formatOutput = true;
@@ -53,7 +53,7 @@ class Menu extends DOMDocument
 		 */
         $this->menu = parent::appendChild( parent::createElement('li'));
 		
-		$this->link = $this->menu->appendChild(parent::createElement("a", $link_name));
+		$this->link = $this->menu->appendChild(parent::createElement("a", htmlentities($link_name)));
 		
 		$this->_config = Kohana::$config->load('options-menu');
 		

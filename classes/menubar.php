@@ -33,7 +33,7 @@ class MenuBar extends DOMDocument
     */
     public function __construct( array $attributes = array() )
     {
-        parent::__construct( '1.0', 'iso-8859-1');
+        parent::__construct( '1.0', 'UTF-8');
 
         /*** format the created XML ***/
         $this->formatOutput = true;
