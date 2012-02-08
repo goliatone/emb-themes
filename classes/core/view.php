@@ -52,18 +52,15 @@ class Core_View extends Kohana_View {
 		
 		//$preferred_skin = Session::instance()->get('preferred_skin', FALSE);
 		$current_theme = Theme::current_theme();
-		
-		//TODO: Remove, current_theme will be either the set theme, or the default one.
-		//TODO: $current_theme WILL NEVER BE FALSE!
-		// Attempt to find the path to our skin if we prefer a specific one
+
+			// Attempt to find the path to our skin if we prefer a specific one
 		if ($current_theme !== FALSE)
 		{
 			$path = $this->get_file_path($current_theme, $file);
 		}
+		
 
 		// In the event that we didn't find a prefered file, use the default.
-		//TODO: Remove, current_theme will be either the set theme, or the default one.
-		//TODO: $current_theme WILL NEVER BE FALSE!		
 		if ($current_theme === FALSE OR is_file($path) === FALSE)
 		{
 			//$path = $this->get_file_path($this->_config->default_theme, $file);			
@@ -74,7 +71,7 @@ class Core_View extends Kohana_View {
 		if (is_file($path) === FALSE)
 		{
 			$dir  = Kohana::$config->load('theme.themes_dir').DIRECTORY_SEPARATOR.$current_theme;
-			$path = Kohana::find_file($dir, $file);			
+			$path = Kohana::find_file($dir, $file);		
 		}
 		
 		// Otherwise, revert to the "standard" Kohana method.

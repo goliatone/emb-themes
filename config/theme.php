@@ -16,6 +16,7 @@ return array(
 				,)
 				,'scripts' => array(
 					 Url::site('media/plugins/lazy/jquery.lazy.js',TRUE) => Resources::JS_HEADER
+					 ,Url::site('media/default/js/modernizr.foundation.js',TRUE) => Resources::JS_HEADER
 				,)
 			,)
 	,

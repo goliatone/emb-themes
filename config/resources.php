@@ -8,6 +8,8 @@ Resources::DEFAULT_SCOPE => array(
 	,)
 	,'scripts' => array(
 		 'media/plugins/lazy/jquery.lazy.js' => Resources::JS_HEADER
+		 ,Url::site('media/default/js/foundation.js',TRUE) => Resources::JS_HEADER
+		 ,Url::site('media/default/js/modernizr.foundation.js',TRUE) => Resources::JS_HEADER
 	,),
 )
 );

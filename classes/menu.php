@@ -43,7 +43,7 @@ class Menu extends DOMDocument
 	 
 	public function __construct($link_name, array $attributes = array() )
     {
-       parent::__construct( '1.0', 'UTF-8');
+        parent::__construct( '1.0', 'UTF-8');
 
         /*** format the created XML ***/
         $this->formatOutput = true;
